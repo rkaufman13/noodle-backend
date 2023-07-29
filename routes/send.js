@@ -1,16 +1,16 @@
 var express = require("express");
 const { SESClient, SendTemplatedEmailCommand } = require("@aws-sdk/client-ses");
 
-const client = new SESClient({ region: "us-east-2" });
-
-var router = express.Router();
-
 const SESConfig = {
   accessKeyId: process.env.AWS_ACCESS_KEY_ID,
   secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
   region: "us-east-2",
   apiVersion: "latest",
 };
+
+const client = new SESClient(SESConfig);
+
+var router = express.Router();
 
 /* POST to send email to event creator on event creation. */
 router.post("/", async function (req, res, next) {

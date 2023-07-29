@@ -1,8 +1,6 @@
 var createError = require("http-errors");
 var express = require("express");
 var cors = require("cors");
-var path = require("path");
-var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 var rateLimit = require("express-rate-limit");
 
@@ -21,6 +19,11 @@ var app = express();
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
+//for nginx
+app.set("trust proxy", true);
+app.set("trust proxy", "loopback");
+
 const allowedOrigins = [
   "https://localhost.com:3000",
   "https://noodleapp.cool",
