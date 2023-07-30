@@ -24,11 +24,7 @@ app.use(express.urlencoded({ extended: false }));
 app.set("trust proxy", true);
 app.set("trust proxy", "loopback");
 
-const allowedOrigins = [
-  "https://localhost.com:3000",
-  "https://noodleapp.cool",
-  "https://www.noodleapp.cool",
-];
+const allowedOrigins = ["https://noodleapp.cool", "https://www.noodleapp.cool"];
 app.use(
   cors({
     origin: allowedOrigins,
