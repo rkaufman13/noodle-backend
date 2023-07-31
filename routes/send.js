@@ -1,14 +1,11 @@
 var express = require("express");
+const { fromNodeProviderChain } = require("@aws-sdk/credential-providers");
+
+const credentials = fromNodeProviderChain();
+
 const { SESClient, SendTemplatedEmailCommand } = require("@aws-sdk/client-ses");
 
-const SESConfig = {
-  accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-  region: "us-east-2",
-  apiVersion: "latest",
-};
-
-const client = new SESClient(SESConfig);
+const client = new SESClient({ credentials });
 
 var router = express.Router();
 
