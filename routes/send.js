@@ -1,7 +1,7 @@
 var express = require("express");
-const { fromNodeProviderChain } = require("@aws-sdk/credential-providers");
+const { fromEnv } = require("@aws-sdk/credential-providers");
 
-const credentials = fromNodeProviderChain();
+const credentials = fromEnv();
 
 const { SESClient, SendTemplatedEmailCommand } = require("@aws-sdk/client-ses");
 
@@ -18,7 +18,7 @@ router.post("/", async function (req, res, next) {
     const data = await client.send(command);
     res.status(200).send();
   } catch (error) {
-    res.status(500).statusMessage(error).send();
+    res.status(500).send(error);
   }
 });
 
