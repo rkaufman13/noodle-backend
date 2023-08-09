@@ -4,7 +4,7 @@ var cors = require("cors");
 var logger = require("morgan");
 var rateLimit = require("express-rate-limit");
 
-var usersRouter = require("./routes/users");
+var healthRouter = require("./routes/healthcheck");
 var sendRouter = require("./routes/send.js");
 
 const limiter = rateLimit({
@@ -33,7 +33,7 @@ app.use(
 );
 app.use(limiter);
 
-app.use("/api/users", usersRouter);
+app.use("/api/healthcheck", healthRouter);
 app.use("/api/send", sendRouter);
 
 // catch 404 and forward to error handler
