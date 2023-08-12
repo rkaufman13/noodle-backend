@@ -11,7 +11,6 @@ router.post("/", async function (req, res, next) {
   console.log(params);
   try {
     const data = await sgMail.send(params);
-    console.log(data);
     res.status(200).send();
   } catch (error) {
     res.status(500).send(error.message);
